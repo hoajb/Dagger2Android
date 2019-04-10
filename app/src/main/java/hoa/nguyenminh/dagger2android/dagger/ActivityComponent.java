@@ -1,6 +1,7 @@
 package hoa.nguyenminh.dagger2android.dagger;
 
 import javax.inject.Named;
+import javax.inject.Singleton;
 
 import dagger.BindsInstance;
 import dagger.Component;
@@ -10,6 +11,7 @@ import hoa.nguyenminh.dagger2android.car.Car;
 /**
  * Created by Hoa Nguyen on Apr 10 2019.
  */
+@Singleton
 @Component(modules = {WheelsModule.class, PetrolEngineModule.class})
 public interface CarComponent {
     Car getCar();

@@ -13,13 +13,13 @@ import javax.inject.Inject;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import hoa.nguyenminh.dagger2android.car.Car;
-import hoa.nguyenminh.dagger2android.dagger.CarComponent;
-import hoa.nguyenminh.dagger2android.dagger.DaggerCarComponent;
+import hoa.nguyenminh.dagger2android.dagger.ActivityComponent;
+import hoa.nguyenminh.dagger2android.dagger.DaggerActivityComponent;
 
 public class MainActivity extends AppCompatActivity {
 
     @Inject
-    Car car;
+    Car car1, car2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,14 +63,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void exampleDagger() {
-        CarComponent carComponent = DaggerCarComponent.builder()
-//                .dieselEngineModule(new DieselEngineModule(100))
-                .horsePower(150)
+        ActivityComponent activityComponent = DaggerActivityComponent.builder()
+                .appComponent(((ExampleApplication) getApplication()).getAppComponent())
+                .horsePower(160)
                 .engineCapacity(1400)
                 .build();
-        carComponent.inject(this);
-//        car = carComponent.getCar();
-        car.drive();
+        activityComponent.inject(this);
+        car1.drive();
+        car2.drive();
 
     }
 }
